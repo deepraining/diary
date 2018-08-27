@@ -1,71 +1,71 @@
 {
-  "root": true,
-  "plugins": [
-    "prettier",
-    "node",
-    "jest"
-  ],
-  "extends": [
-    "eslint:recommended",
-    "plugin:node/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier"],
   "env": {
+    "browser": true,
     "node": true,
-    "es6": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 2017
+    "es6": true,
+    "mocha": true,
+    "jest": true,
+    "jasmine": true
   },
   "rules": {
-    "prettier/prettier": "error",
-    "no-undef": "error",
-    "no-extra-semi": "error",
-    "no-template-curly-in-string": "error",
-    "no-caller": "error",
-    "no-control-regex": "off",
-    "yoda": "error",
-    "eqeqeq": "error",
-    "global-require": "off",
-    "eol-last": "error",
-    "no-extra-bind": "warn",
-    "no-process-exit": "warn",
-    "no-use-before-define": "off",
-    "no-unused-vars": [
+    "generator-star-spacing": [0],
+    "consistent-return": [0],
+    "react/forbid-prop-types": [0],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "global-require": [1],
+    "import/prefer-default-export": [0],
+    "react/jsx-no-bind": [0],
+    "react/prop-types": [0],
+    "react/prefer-stateless-function": [0],
+    "react/jsx-wrap-multilines": [
       "error",
       {
-        "args": "none"
+        "declaration": "parens-new-line",
+        "assignment": "parens-new-line",
+        "return": "parens-new-line",
+        "arrow": "parens-new-line",
+        "condition": "parens-new-line",
+        "logical": "parens-new-line",
+        "prop": "ignore"
       }
     ],
-    "no-unsafe-negation": "error",
-    "no-loop-func": "warn",
-    "indent": "off",
-    "no-console": "off",
-    "node/no-unsupported-features": "error",
-    "node/no-deprecated-api": "error",
-    "node/no-missing-import": "error",
-    "node/no-missing-require": [
+    "no-else-return": [0],
+    "no-restricted-syntax": [0],
+    "import/no-extraneous-dependencies": [0],
+    "no-use-before-define": [0],
+    "jsx-a11y/no-static-element-interactions": [0],
+    "jsx-a11y/no-noninteractive-element-interactions": [0],
+    "jsx-a11y/click-events-have-key-events": [0],
+    "jsx-a11y/anchor-is-valid": [0],
+    "no-nested-ternary": [0],
+    "arrow-body-style": [0],
+    "import/extensions": [0],
+    "no-bitwise": [0],
+    "no-cond-assign": [0],
+    "import/no-unresolved": [0],
+    "comma-dangle": [
       "error",
       {
-        "allowModules": [
-          "webpack"
-        ]
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "ignore"
       }
     ],
-    "node/no-unpublished-bin": "error",
-    "node/no-unpublished-require": "error",
-    "node/process-exit-as-throw": "error",
-    "brace-style": "warn",
-    "no-useless-escape": "warn"
+    "object-curly-newline": [0],
+    "function-paren-newline": [0],
+    "no-restricted-globals": [0],
+    "require-yield": [1]
   },
-  "overrides": [
-    {
-      "files": [
-        "test/**/*.js"
-      ],
-      "env": {
-        "jest/globals": true
-      }
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
     }
-  ]
+  },
+  "settings": {
+    "polyfills": ["fetch", "promises"]
+  }
 }
