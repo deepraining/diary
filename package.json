@@ -1,0 +1,44 @@
+{
+  "name": "diary",
+  "version": "0.0.1",
+  "description": "A diary application developed by react-native and expo.",
+  "homepage": "https://github.com/senntyou/diary",
+  "author": "senntyou",
+  "keywords": [
+    "react-native",
+    "react",
+    "native",
+    "expo",
+    "exp",
+    "diary",
+    "application",
+    "app"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/senntyou/diary"
+  },
+  "devDependencies": {
+    "react-native-scripts": "1.14.0",
+    "jest-expo": "~27.0.0",
+    "react-test-renderer": "16.3.1"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^27.0.1",
+    "react": "16.3.1",
+    "react-native": "~0.55.2"
+  }
+}
