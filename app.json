@@ -1,5 +1,26 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "diary",
+    "description": "A diary application developed by react-native and expo.",
+    "slug": "diary",
+    "sdkVersion": "27.0.0",
+    "version": "0.0.1",
+    "githubUrl": "https://github.com/senntyou/diary",
+    "orientation": "portrait",
+    "privacy": "public",
+    "icon": "./assets/icons/icon.png",
+    "splash": {
+      "image": "./assets/icons/loadingIcon.png"
+    },
+    "android": {
+      "package": "senntyou.diary",
+      "versionCode": 11
+    },
+    "ios": {
+      "bundleIdentifier": "senntyou.diary"
+    },
+    "assetBundlePatterns": [
+      "assets/**"
+    ]
   }
 }
