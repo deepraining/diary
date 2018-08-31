@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import Main from './screens/main';
 
 const styles = StyleSheet.create({
+  title: {
+    color: '#ffffff',
+    fontSize: 20,
+    paddingLeft: 10,
+  },
   card: {
     backgroundColor: '#fff',
   },
@@ -14,9 +19,8 @@ const AppNavigator = createStackNavigator(
     Main: {
       screen: Main,
       navigationOptions: () => ({
-        title: 'Diary By RN',
+        headerTitle: <Text style={styles.title}>Diary By RN</Text>,
         headerStyle: {
-          headerTintColor: '#ffffff',
           backgroundColor: '#6b52ae',
         },
       }),
