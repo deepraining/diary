@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import Expo, { Font } from 'expo';
-import { createStackNavigator } from 'react-navigation';
-import Main from './screens/main';
-
-const AppNavigator = createStackNavigator({
-  Main: { screen: Main },
-});
+import { AppLoading, Font } from 'expo';
+import Entry from './src/entry';
 
 export default class App extends Component {
   state = {
@@ -34,9 +29,9 @@ export default class App extends Component {
     const { appIsReady } = this.state;
 
     if (appIsReady) {
-      return <AppNavigator />;
+      return <Entry />;
     } else {
-      return <Expo.AppLoading />;
+      return <AppLoading />;
     }
   }
 }
