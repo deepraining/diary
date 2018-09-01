@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Home from '../components/Home';
-import * as DiaryActions from '../actions/diary';
+import * as actions from '../actions/diary';
 
 function mapStateToProps(state) {
   return {
@@ -10,7 +10,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(DiaryActions, dispatch);
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(

@@ -1,19 +1,57 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Textarea } from 'native-base';
+import { Container, Textarea, View } from 'native-base';
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    height: '100%',
     padding: 10,
+  },
+  inputWrapper: {
+    width: '100%',
+    height: '100%',
+    borderWidth: 1,
+    borderColor: '#eee',
+    borderRadius: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+  },
+  input: {
+    width: '100%',
+    height: '100%',
+    // Textarea has a default marginTop
+    marginTop: 0,
   },
 });
 
 export default class Add extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onChangeText = this.onChangeText.bind(this);
+  }
+
+  onChangeText(text) {
+    const { update } = this.props;
+
+    update(text);
+  }
+
   render() {
+    const { input } = this.props;
+    const { text } = input;
+
     return (
       <Container style={styles.container}>
-        <Textarea rowSpan={5} bordered placeholder="Write something..." />
+        <View style={styles.inputWrapper}>
+          <Textarea
+            placeholder="Write something ..."
+            style={styles.input}
+            onChangeText={this.onChangeText}
+            value={text}
+          />
+        </View>
       </Container>
     );
   }

@@ -1,4 +1,6 @@
+import { Alert } from 'react-native';
 import { ADD_DIARY, DELETE_DIARY, REPLACE_DIARY } from '../actions/diary';
+import { storeDiaries } from '../storage';
 
 export default function diaryReducer(diaries = [], action) {
   const { type, payload } = action;
@@ -7,29 +9,41 @@ export default function diaryReducer(diaries = [], action) {
     case ADD_DIARY: {
       const newDiaries = [...diaries, payload];
 
-      // storeDiaries(newDiaries);
+      const result = storeDiaries(newDiaries);
 
-      return newDiaries;
+      if (!result.error) return result.diaries;
+      else {
+        Alert.alert('Error', 'Error occurred when saving diaries, please try once again.');
+        return diaries;
+      }
     }
     case DELETE_DIARY: {
-      const newDiaries = diaries.filter(item => item.id !== payload);
+      const newDiaries = diaries.filter(item => item.date !== payload);
 
-      // storeDiaries(newDiaries);
+      const result = storeDiaries(newDiaries);
 
-      return newDiaries;
+      if (!result.error) return result.diaries;
+      else {
+        Alert.alert('Error', 'Error occurred when deleting diary, please try once again.');
+        return diaries;
+      }
     }
     case REPLACE_DIARY: {
-      const { id, diary } = payload;
+      const { date, diary } = payload;
 
       const newDiaries = diaries.map(item => {
-        if (item.id === id) return diary;
+        if (item.date === date) return diary;
 
         return item;
       });
 
-      // storeDiaries(newDiaries);
+      const result = storeDiaries(newDiaries);
 
-      return newDiaries;
+      if (!result.error) return result.diaries;
+      else {
+        Alert.alert('Error', 'Error occurred when saving diaries, please try once again.');
+        return diaries;
+      }
     }
     default:
       return diaries;

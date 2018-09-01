@@ -1,16 +1,16 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Add from '../components/Add';
-import * as DiaryActions from '../actions/diary';
+import * as actions from '../actions/input';
 
 function mapStateToProps(state) {
   return {
-    diaries: state.diaries,
+    input: state.input,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(DiaryActions, dispatch);
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(

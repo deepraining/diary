@@ -9,16 +9,16 @@ export function add(diary) {
   };
 }
 
-export function del(id) {
+export function del(date) {
   return {
     type: DELETE_DIARY,
-    payload: id,
+    payload: date,
   };
 }
 
-export function replace(id, diary) {
+export function replace(date, diary) {
   return {
     type: REPLACE_DIARY,
-    payload: { id, diary },
+    payload: { date, diary },
   };
 }
