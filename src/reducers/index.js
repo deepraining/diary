@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import diary from './diary';
+import diaries from './diary';
 import input from './input';
 
-export default combineReducers({ diary, input });
+export default combineReducers({ diaries, input });

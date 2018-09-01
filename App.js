@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { AppLoading, Font } from 'expo';
 import Entry from './src/entry';
+import { getDiaries } from './src/storage';
 
 export default class App extends Component {
   state = {
     appIsReady: false,
+    storedDiaries: [],
   };
 
   componentWillMount() {
@@ -18,18 +20,22 @@ export default class App extends Component {
         Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
         Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf'),
       });
+
+      const storedDiaries = await getDiaries();
+
+      this.setState({ appIsReady: true, storedDiaries });
     } catch (e) {
       console.log({ e });
-    } finally {
+
       this.setState({ appIsReady: true });
     }
   }
 
   render() {
-    const { appIsReady } = this.state;
+    const { appIsReady, storedDiaries } = this.state;
 
     if (appIsReady) {
-      return <Entry />;
+      return <Entry storedDiaries={storedDiaries} />;
     } else {
       return <AppLoading />;
     }

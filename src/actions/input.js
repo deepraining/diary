@@ -11,7 +11,7 @@ export function update(text) {
 export function initAdd() {
   return {
     type: INIT_INPUT,
-    payload: { isEdit: !1, text: '' },
+    payload: { isEdit: !1, date: '', text: '' },
   };
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Textarea, View } from 'native-base';
+import events from '../events';
 
 const styles = StyleSheet.create({
   container: {
@@ -30,6 +31,14 @@ export default class Add extends Component {
     super(props);
 
     this.onChangeText = this.onChangeText.bind(this);
+  }
+
+  componentDidMount() {
+    const { navigation } = this.props;
+
+    events.on('input-back', () => {
+      navigation.goBack();
+    });
   }
 
   onChangeText(text) {

@@ -4,6 +4,7 @@ import { Container, View, Fab, Icon } from 'native-base';
 import Timeline from 'react-native-timeline-listview';
 
 import share from '../share';
+import { initAdd } from '../actions/input';
 
 const styles = StyleSheet.create({
   title: {
@@ -12,6 +13,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#ccc',
     textAlign: 'center',
+  },
+  container: {
+    width: '100%',
+    height: '100%',
+    padding: 20,
+  },
+  list: {
+    width: '100%',
+    height: 600,
+    paddingTop: 5,
   },
 });
 
@@ -24,7 +35,9 @@ export default class Main extends Component {
 
   onPressAdd() {
     const { navigation } = this.props;
+    const { dispatch } = share.store;
     share.inputIsEdit = !1;
+    dispatch(initAdd());
     navigation.navigate('Add');
   }
 
@@ -39,7 +52,22 @@ export default class Main extends Component {
       description: item.text,
     }));
 
-    return <Timeline data={data} />;
+    return (
+      <Container style={styles.container}>
+        <Timeline
+          data={data}
+          circleSize={20}
+          circleColor="rgb(45,156,219)"
+          lineColor="rgb(45,156,219)"
+          timeContainerStyle={{ minWidth: 52, marginTop: -5 }}
+          listViewStyle={{ paddingTop: 5 }}
+          detailContainerStyle={{ marginTop: -11 }}
+          timeStyle={{ textAlign: 'center', backgroundColor: '#ff9797', color: 'white', padding: 5, borderRadius: 13 }}
+          descriptionStyle={{ color: 'gray' }}
+          style={styles.list}
+        />
+      </Container>
+    );
   }
 
   render() {

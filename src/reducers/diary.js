@@ -1,6 +1,7 @@
 import { Alert } from 'react-native';
 import { ADD_DIARY, DELETE_DIARY, REPLACE_DIARY } from '../actions/diary';
 import { storeDiaries } from '../storage';
+import getSortedDiaries from '../util/get_sorted_diaries';
 
 export default function diaryReducer(diaries = [], action) {
   const { type, payload } = action;
@@ -8,25 +9,23 @@ export default function diaryReducer(diaries = [], action) {
   switch (type) {
     case ADD_DIARY: {
       const newDiaries = [...diaries, payload];
+      const sortedDiaries = getSortedDiaries(newDiaries);
 
-      const result = storeDiaries(newDiaries);
+      storeDiaries(sortedDiaries).then(({ success }) => {
+        if (!success) Alert.alert('Error', 'Error occurred when saving diaries.');
+      });
 
-      if (!result.error) return result.diaries;
-      else {
-        Alert.alert('Error', 'Error occurred when saving diaries, please try once again.');
-        return diaries;
-      }
+      return sortedDiaries;
     }
     case DELETE_DIARY: {
       const newDiaries = diaries.filter(item => item.date !== payload);
+      const sortedDiaries = getSortedDiaries(newDiaries);
 
-      const result = storeDiaries(newDiaries);
+      storeDiaries(sortedDiaries).then(({ success }) => {
+        if (!success) Alert.alert('Error', 'Error occurred when saving diaries.');
+      });
 
-      if (!result.error) return result.diaries;
-      else {
-        Alert.alert('Error', 'Error occurred when deleting diary, please try once again.');
-        return diaries;
-      }
+      return sortedDiaries;
     }
     case REPLACE_DIARY: {
       const { date, diary } = payload;
@@ -36,14 +35,13 @@ export default function diaryReducer(diaries = [], action) {
 
         return item;
       });
+      const sortedDiaries = getSortedDiaries(newDiaries);
 
-      const result = storeDiaries(newDiaries);
+      storeDiaries(sortedDiaries).then(({ success }) => {
+        if (!success) Alert.alert('Error', 'Error occurred when saving diaries.');
+      });
 
-      if (!result.error) return result.diaries;
-      else {
-        Alert.alert('Error', 'Error occurred when saving diaries, please try once again.');
-        return diaries;
-      }
+      return sortedDiaries;
     }
     default:
       return diaries;

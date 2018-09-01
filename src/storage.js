@@ -1,31 +1,29 @@
 import { AsyncStorage } from 'react-native';
-import sortBy from 'lodah/sortBy';
-import reverse from 'lodah/reverse';
 
 const diariesKey = '@senntyou:diaries';
 
 export async function storeDiaries(diaries = []) {
-  const sortedDiaries = reverse(sortBy(diaries, ['date']));
+  console.info('storage.storeDiaries: ', diaries);
 
   try {
-    await AsyncStorage.setItem(diariesKey, sortedDiaries);
-  } catch (error) {
-    return {
-      error,
-      diaries: sortedDiaries,
-    };
-  }
+    await AsyncStorage.setItem(diariesKey, JSON.stringify(diaries));
 
-  return {
-    diaries: sortedDiaries,
-  };
+    console.info('storage.storeDiaries success');
+
+    return { success: !0 };
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
 }
 
 export async function getDiaries() {
   try {
     const value = await AsyncStorage.getItem(diariesKey);
 
-    return value || [];
+    console.info('storage.getDiaries: ', value);
+
+    return value ? JSON.parse(value) : [];
   } catch (error) {
     return [];
   }
