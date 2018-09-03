@@ -4,7 +4,7 @@ import { Container, View, Fab, Icon } from 'native-base';
 import Timeline from 'react-native-timeline-listview';
 
 import share from '../share';
-import { initAdd } from '../actions/input';
+import { initAdd, initEdit } from '../actions/input';
 
 const styles = StyleSheet.create({
   title: {
@@ -31,13 +31,25 @@ export default class Main extends Component {
     super(props);
 
     this.onPressAdd = this.onPressAdd.bind(this);
+    this.onEventPress = this.onEventPress.bind(this);
   }
 
   onPressAdd() {
     const { navigation } = this.props;
     const { dispatch } = share.store;
+
     share.inputIsEdit = !1;
     dispatch(initAdd());
+    navigation.navigate('Add');
+  }
+
+  onEventPress(item) {
+    const { navigation } = this.props;
+    const { dispatch } = share.store;
+    const { title, description } = item;
+
+    share.inputIsEdit = !0;
+    dispatch(initEdit(title, description));
     navigation.navigate('Add');
   }
 
@@ -65,6 +77,7 @@ export default class Main extends Component {
           timeStyle={{ textAlign: 'center', backgroundColor: '#ff9797', color: 'white', padding: 5, borderRadius: 13 }}
           descriptionStyle={{ color: 'gray' }}
           style={styles.list}
+          onEventPress={this.onEventPress}
         />
       </Container>
     );

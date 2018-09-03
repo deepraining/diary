@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import Home from './containers/Home';
 import Add from './containers/Add';
 import share from './share';
 import pressAdd from './handler/press_add';
+import pressDelete from './handler/press_delete';
 
 const styles = StyleSheet.create({
   title: {
@@ -16,10 +17,13 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
   },
-  add: {
+  action: {
     color: '#ffffff',
     fontSize: 20,
-    paddingHorizontal: 15,
+    paddingRight: 15,
+  },
+  delete: {
+    color: '#FFC966',
   },
 });
 
@@ -37,15 +41,22 @@ const AppNavigator = createStackNavigator(
     Add: {
       screen: Add,
       navigationOptions: () => ({
-        headerTitle: `${share.inputIsEdit ? 'Edit' : 'Add'} a diary`,
+        headerTitle: `${share.inputIsEdit ? 'Edit' : 'Add a'} diary`,
         headerStyle: {
           backgroundColor: '#5067FF',
         },
         headerTintColor: '#fff',
         headerRight: (
-          <Text style={styles.add} onPress={pressAdd}>
-            {share.inputIsEdit ? 'Update' : 'Save'}
-          </Text>
+          <Fragment>
+            {share.inputIsEdit && (
+              <Text style={[styles.action, styles.delete]} onPress={pressDelete}>
+                Delete
+              </Text>
+            )}
+            <Text style={styles.action} onPress={pressAdd}>
+              {share.inputIsEdit ? 'Update' : 'Save'}
+            </Text>
+          </Fragment>
         ),
       }),
     },

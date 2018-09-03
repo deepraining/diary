@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import DatePicker from 'react-native-datepicker';
 import { Container, Textarea, View } from 'native-base';
 import events from '../events';
+import share from '../share';
+import { updateDate } from '../actions/input';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +27,10 @@ const styles = StyleSheet.create({
     // Textarea has a default marginTop
     marginTop: 0,
   },
+  dateWrapper: {
+    width: '100%',
+    padding: 10,
+  },
 });
 
 export default class Add extends Component {
@@ -31,6 +38,7 @@ export default class Add extends Component {
     super(props);
 
     this.onChangeText = this.onChangeText.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
   }
 
   componentDidMount() {
@@ -47,12 +55,35 @@ export default class Add extends Component {
     update(text);
   }
 
+  onDateChange = date => {
+    const { dispatch } = share.store;
+
+    dispatch(updateDate(date));
+  };
+
   render() {
     const { input } = this.props;
-    const { text } = input;
+    const { text, date, isEdit } = input;
 
     return (
       <Container style={styles.container}>
+        <View style={styles.dateWrapper}>
+          <DatePicker
+            style={{ width: '100%' }}
+            showIcon={false}
+            disabled={isEdit}
+            date={date}
+            mode="date"
+            placeholder="Select date"
+            format="YYYY-MM-DD"
+            customStyles={{
+              dateInput: {
+                borderWidth: 0,
+              },
+            }}
+            onDateChange={this.onDateChange}
+          />
+        </View>
         <View style={styles.inputWrapper}>
           <Textarea
             placeholder="Write something ..."

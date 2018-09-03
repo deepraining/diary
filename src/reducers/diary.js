@@ -12,7 +12,7 @@ export default function diaryReducer(diaries = [], action) {
       const sortedDiaries = getSortedDiaries(newDiaries);
 
       storeDiaries(sortedDiaries).then(({ success }) => {
-        if (!success) Alert.alert('Error', 'Error occurred when saving diaries.');
+        if (!success) Alert.alert('', 'Error occurred when saving diaries.');
       });
 
       return sortedDiaries;
@@ -22,7 +22,7 @@ export default function diaryReducer(diaries = [], action) {
       const sortedDiaries = getSortedDiaries(newDiaries);
 
       storeDiaries(sortedDiaries).then(({ success }) => {
-        if (!success) Alert.alert('Error', 'Error occurred when saving diaries.');
+        if (!success) Alert.alert('', 'Error occurred when saving diaries.');
       });
 
       return sortedDiaries;
@@ -38,7 +38,7 @@ export default function diaryReducer(diaries = [], action) {
       const sortedDiaries = getSortedDiaries(newDiaries);
 
       storeDiaries(sortedDiaries).then(({ success }) => {
-        if (!success) Alert.alert('Error', 'Error occurred when saving diaries.');
+        if (!success) Alert.alert('', 'Error occurred when saving diaries.');
       });
 
       return sortedDiaries;
