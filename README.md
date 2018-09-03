@@ -2,15 +2,15 @@
 
 A diary application developed by [react-native](https://github.com/facebook/react-native) and [expo](https://expo.io). 
 
+## demo
+
+[expo - diary - @senntyou](https://expo.io/@senntyou/diary).
+
 ## preview
 
-![](./preview/1.jpg)
+![](./preview/1.jpg) ![](./preview/2.jpg)
 
-![](./preview/2.jpg)
-
-![](./preview/3.jpg)
-
-![](./preview/4.jpg)
+![](./preview/3.jpg) ![](./preview/4.jpg)
 
 ## related
 
