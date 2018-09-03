@@ -8,9 +8,11 @@ import { updateDate } from '../actions/input';
 
 const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     width: '100%',
     height: '100%',
     padding: 10,
+    paddingTop: 60,
   },
   inputWrapper: {
     width: '100%',
@@ -28,8 +30,10 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   dateWrapper: {
-    width: '100%',
-    padding: 10,
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    right: 10,
   },
 });
 
@@ -79,6 +83,7 @@ export default class Add extends Component {
             customStyles={{
               dateInput: {
                 borderWidth: 0,
+                borderRadius: 5,
               },
             }}
             onDateChange={this.onDateChange}

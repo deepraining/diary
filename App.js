@@ -34,7 +34,7 @@ export default class App extends Component {
   render() {
     const { appIsReady, storedDiaries } = this.state;
 
-    console.log('v13');
+    console.log('v32');
 
     if (appIsReady) {
       return <Entry storedDiaries={storedDiaries} />;

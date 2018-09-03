@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { Container, View, Fab, Icon } from 'native-base';
+import { Container, Fab, Icon } from 'native-base';
 import Timeline from 'react-native-timeline-listview';
 
 import share from '../share';
@@ -21,8 +21,7 @@ const styles = StyleSheet.create({
   },
   list: {
     width: '100%',
-    height: 600,
-    paddingTop: 5,
+    height: '100%',
   },
 });
 
@@ -71,9 +70,9 @@ export default class Main extends Component {
           circleSize={20}
           circleColor="rgb(45,156,219)"
           lineColor="rgb(45,156,219)"
-          timeContainerStyle={{ minWidth: 52, marginTop: -5 }}
-          listViewStyle={{ paddingTop: 5 }}
-          detailContainerStyle={{ marginTop: -11 }}
+          rowContainerStyle={{ marginTop: 5, marginBottom: -5 }}
+          timeContainerStyle={{ marginTop: -5, minWidth: 52 }}
+          detailContainerStyle={{ marginTop: -11, paddingBottom: 20 }}
           timeStyle={{ textAlign: 'center', backgroundColor: '#ff9797', color: 'white', padding: 5, borderRadius: 13 }}
           descriptionStyle={{ color: 'gray' }}
           style={styles.list}
@@ -87,11 +86,9 @@ export default class Main extends Component {
     return (
       <Container>
         {this.getContentJsx()}
-        <View style={{ flex: 1 }}>
-          <Fab style={{ backgroundColor: '#5067FF' }} position="bottomRight" onPress={this.onPressAdd}>
-            <Icon name="add" />
-          </Fab>
-        </View>
+        <Fab style={{ backgroundColor: '#5067FF' }} position="bottomRight" onPress={this.onPressAdd}>
+          <Icon name="add" />
+        </Fab>
       </Container>
     );
   }
