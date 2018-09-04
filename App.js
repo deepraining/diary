@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import Expo, { Font } from 'expo';
-import { createStackNavigator } from 'react-navigation';
-import Main from './screens/main';
-
-const AppNavigator = createStackNavigator({
-  Main: { screen: Main },
-});
+import { AppLoading, Font } from 'expo';
+import Entry from './src/entry';
+import { getDiaries } from './src/storage';
 
 export default class App extends Component {
   state = {
     appIsReady: false,
+    storedDiaries: [],
   };
 
   componentWillMount() {
@@ -23,20 +20,26 @@ export default class App extends Component {
         Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
         Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf'),
       });
+
+      const storedDiaries = await getDiaries();
+
+      this.setState({ appIsReady: true, storedDiaries });
     } catch (e) {
       console.log({ e });
-    } finally {
+
       this.setState({ appIsReady: true });
     }
   }
 
   render() {
-    const { appIsReady } = this.state;
+    const { appIsReady, storedDiaries } = this.state;
+
+    console.log('v32');
 
     if (appIsReady) {
-      return <AppNavigator />;
+      return <Entry storedDiaries={storedDiaries} />;
     } else {
-      return <Expo.AppLoading />;
+      return <AppLoading />;
     }
   }
 }
