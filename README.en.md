@@ -1,21 +1,21 @@
 # diary
 
-[English Documentation](./README.en.md)
+[中文文档](./README.md)
 
-一个基于 [react-native](https://github.com/facebook/react-native) 与 [expo](https://expo.io) 开发的日志应用. 
+A diary application developed by [react-native](https://github.com/facebook/react-native) and [expo](https://expo.io). 
 
 ## demo
 
 [expo - diary - @senntyou](https://expo.io/@senntyou/diary).
 
-## 预览
+## preview
 
 ![](./preview/1.jpg)
 ![](./preview/2.jpg)
 ![](./preview/3.jpg)
 ![](./preview/4.jpg)
 
-## 相关
+## related
 
 - [react-native](https://github.com/facebook/react-native)
 - [expo](https://expo.io)
@@ -26,15 +26,15 @@
 - [react-native-timeline-listview](https://github.com/thegamenicorus/react-native-timeline-listview)
 - [react-native-datepicker](https://github.com/xgfe/react-native-datepicker)
 
-## 开发
+## development
 
 ```
-# clone 仓库
+# clone repository
 git clone https://github.com/senntyou/diary.git
 
-# 安装依赖
+# install dependencies
 yarn install
 
-# 开发
+# dev
 expo start
 ```
